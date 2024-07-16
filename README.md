@@ -1,15 +1,19 @@
 espcmsSQL注入漏洞
 https://www.ecisp.cn/html/cn/download_espcms/
+
+
 phpstudy安装
 代码审计
 espcms_admin/control/SettingMain.php
 在更新网站配置时，key和value的值是直接拼接进去的，因此存在SQL注入漏洞
 
+
 漏洞复现
 安装成功后进入网站后台
 点击设置->系统设置->确定保存
 
-并抓包
+并抓包，数据包如下
+
 POST /espcms_admin/index.php?act=FuNYwqPAgpSXj4m5d2npHEownomPfTf6l4%2BJuXdp6Rxja3m%2FkIeu1g%3D%3D HTTP/1.1
 Host: 192.168.1.101
 Content-Length: 518
